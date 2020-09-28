@@ -6,10 +6,12 @@ var has_rocket = false
 var rocket_scene = load("res://Rocket.tscn")
 var rocket
 
+
 func _on_Buy_pressed():
 	# Check for rocket and then create a new one.
 	if not has_rocket:
 		money -= 1000000
+		$GUI/Cols/Stats/Rows/Money.text = "$" + str(money)
 		rocket = rocket_scene.instance()
 		rocket.position = Vector2(773,525)
 		add_child(rocket)
