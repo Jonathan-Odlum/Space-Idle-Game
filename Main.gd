@@ -49,4 +49,7 @@ func increment_launches():
 
 func _on_Building_Selected(building_name):
 	if building_name == "LaunchPad":
+		get_tree().get_root().get_node("Main/Control/ContextMenus").current_tab = 0
+	if building_name == "Warehouse":
 		get_tree().get_root().get_node("Main/Control/ContextMenus").current_tab = 1
+
