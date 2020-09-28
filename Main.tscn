@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Earth.gd" type="Script" id=2]
 [ext_resource path="res://Moon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://assets/Sprites/LaunchPad/Launch Tower.png" type="Texture" id=5]
@@ -9,9 +8,14 @@
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
 [node name="Main" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -19,7 +23,7 @@ __meta__ = {
 
 [node name="GUI" type="Control" parent="."]
 margin_right = 1600.0
-margin_bottom = 127.0
+margin_bottom = 128.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
@@ -32,9 +36,8 @@ __meta__ = {
 }
 
 [node name="Box" type="MarginContainer" parent="GUI"]
-margin_top = 4.0
-margin_right = 1600.0
-margin_bottom = 140.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/margin_right = 25
 custom_constants/margin_top = 25
 custom_constants/margin_left = 25
@@ -46,18 +49,18 @@ __meta__ = {
 margin_left = 25.0
 margin_top = 25.0
 margin_right = 1575.0
-margin_bottom = 136.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Stats" type="MarginContainer" parent="GUI/Box/Cols"]
 margin_right = 1550.0
-margin_bottom = 111.0
+margin_bottom = 103.0
 size_flags_horizontal = 3
 
 [node name="Rows" type="VBoxContainer" parent="GUI/Box/Cols/Stats"]
 margin_right = 1550.0
-margin_bottom = 111.0
+margin_bottom = 103.0
 
 [node name="Money" type="Label" parent="GUI/Box/Cols/Stats/Rows"]
 margin_right = 76.0
@@ -102,10 +105,11 @@ __meta__ = {
 }
 
 [node name="Locations" type="TabContainer" parent="."]
-margin_top = 131.0
+margin_top = 128.0
 margin_right = 1600.0
-margin_bottom = 768.0
+margin_bottom = 770.0
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
 tabs_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,11 +118,6 @@ __meta__ = {
 [node name="Earth" type="Control" parent="Locations"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -132,8 +131,8 @@ __meta__ = {
 }
 
 [node name="Sky" type="ColorRect" parent="Locations/Earth/Scenery"]
-margin_right = 1592.0
-margin_bottom = 416.0
+margin_right = 1600.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
@@ -143,9 +142,9 @@ __meta__ = {
 }
 
 [node name="Ground" type="ColorRect" parent="Locations/Earth/Scenery"]
-margin_top = 416.0
-margin_right = 1592.0
-margin_bottom = 625.0
+margin_top = 428.0
+margin_right = 1600.0
+margin_bottom = 642.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.0666667, 0.439216, 0.0666667, 1 )
@@ -163,43 +162,29 @@ __meta__ = {
 
 [node name="Buildings" type="HBoxContainer" parent="Locations/Earth/View"]
 margin_right = 1804.0
-margin_bottom = 613.0
+margin_bottom = 630.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LaunchPad" type="MarginContainer" parent="Locations/Earth/View/Buildings"]
 margin_right = 900.0
-margin_bottom = 613.0
+margin_bottom = 630.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_horizontal = 3
 
-[node name="Sprite" type="TextureRect" parent="Locations/Earth/View/Buildings/LaunchPad"]
+[node name="TextureButton" type="TextureButton" parent="Locations/Earth/View/Buildings/LaunchPad"]
 margin_left = 410.0
-margin_top = 206.0
+margin_top = 215.0
 margin_right = 490.0
-margin_bottom = 406.0
+margin_bottom = 415.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource( 5 )
-
-[node name="Launch" type="Button" parent="Locations/Earth/View/Buildings/LaunchPad"]
-margin_left = 400.0
-margin_top = 563.0
-margin_right = 500.0
-margin_bottom = 613.0
-rect_min_size = Vector2( 100, 50 )
-size_flags_horizontal = 4
-size_flags_vertical = 8
-custom_fonts/font = SubResource( 1 )
-text = "Launch"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource( 5 )
 
 [node name="RocketFactory" type="MarginContainer" parent="Locations/Earth/View/Buildings"]
 margin_left = 904.0
 margin_right = 1804.0
-margin_bottom = 613.0
+margin_bottom = 630.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_horizontal = 3
 custom_constants/margin_right = 50
@@ -207,9 +192,9 @@ custom_constants/margin_bottom = 50
 
 [node name="Buy" type="Button" parent="Locations/Earth/View/Buildings/RocketFactory"]
 margin_left = 750.0
-margin_top = 513.0
+margin_top = 530.0
 margin_right = 850.0
-margin_bottom = 563.0
+margin_bottom = 580.0
 rect_min_size = Vector2( 100, 50 )
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -228,19 +213,11 @@ margin_bottom = -4.0
 [node name="Moon" parent="Locations/Moon" instance=ExtResource( 3 )]
 
 [node name="Control" type="Control" parent="."]
-margin_top = 772.0
+margin_top = 770.0
 margin_right = 1600.0
 margin_bottom = 900.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
-margin_top = 4.0
-margin_right = 1600.0
-margin_bottom = 132.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 anchor_right = 1.0
@@ -249,5 +226,38 @@ color = Color( 0.588235, 0.588235, 0.588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Locations/Earth/View/Buildings/LaunchPad/Launch" to="Locations/Earth" method="_on_Launch_pressed"]
-[connection signal="pressed" from="Locations/Earth/View/Buildings/RocketFactory/Buy" to="Locations/Earth" method="_on_Buy_pressed"]
+
+[node name="ContextMenus" type="TabContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Control/ContextMenus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LaunchPad" type="MarginContainer" parent="Control/ContextMenus"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1560.0
+margin_bottom = -90.0
+
+[node name="Launch" type="Button" parent="Control/ContextMenus/LaunchPad"]
+margin_right = 100.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 8
+custom_fonts/font = SubResource( 1 )
+text = "Launch"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Locations/Earth/View/Buildings/LaunchPad/TextureButton" to="." method="_on_Building_Selected" binds= [ "LaunchPad" ]]
+[connection signal="pressed" from="Locations/Earth/View/Buildings/RocketFactory/Buy" to="." method="_on_Buy_pressed"]
+[connection signal="pressed" from="Control/ContextMenus/LaunchPad/Launch" to="." method="_on_Launch_pressed"]
