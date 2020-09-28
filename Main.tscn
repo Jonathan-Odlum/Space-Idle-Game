@@ -205,10 +205,6 @@ text = "Buy"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
 
 [node name="Moon" parent="Locations/Moon" instance=ExtResource( 3 )]
 
@@ -244,12 +240,12 @@ anchor_bottom = 1.0
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1560.0
-margin_bottom = -90.0
 
 [node name="Launch" type="Button" parent="Control/ContextMenus/LaunchPad"]
-margin_right = 100.0
-margin_bottom = 50.0
+margin_left = 750.0
+margin_top = 80.0
+margin_right = 850.0
+margin_bottom = 130.0
 rect_min_size = Vector2( 100, 50 )
 size_flags_horizontal = 4
 size_flags_vertical = 8
