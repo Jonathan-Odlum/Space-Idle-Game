@@ -11,7 +11,7 @@ func _on_Buy_pressed():
 	if not has_rocket:
 		money -= 1000000
 		rocket = rocket_scene.instance()
-		rocket.position = Vector2(773,500)
+		rocket.position = Vector2(773,525)
 		add_child(rocket)
 		rocket.connect("in_orbit", self, "_on_RigidBody2D_in_orbit")
 		has_rocket = true
