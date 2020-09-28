@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Earth.gd" type="Script" id=2]
 [ext_resource path="res://Moon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://assets/Sprites/LaunchPad/Launch Tower.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
 
-[node name="Main" type="Control"]
+[node name="Main" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -16,12 +17,95 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Locations" type="TabContainer" parent="."]
+[node name="GUI" type="Control" parent="."]
+margin_right = 1600.0
+margin_bottom = 127.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Background" type="ColorRect" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.68179
-margin_right = 1.68176
-margin_bottom = 1.0
+color = Color( 0.45098, 0.45098, 0.45098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="MarginContainer" parent="GUI"]
+margin_top = 4.0
+margin_right = 1600.0
+margin_bottom = 140.0
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cols" type="HBoxContainer" parent="GUI/Box"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 1575.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Stats" type="MarginContainer" parent="GUI/Box/Cols"]
+margin_right = 1550.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+
+[node name="Rows" type="VBoxContainer" parent="GUI/Box/Cols/Stats"]
+margin_right = 1550.0
+margin_bottom = 111.0
+
+[node name="Money" type="Label" parent="GUI/Box/Cols/Stats/Rows"]
+margin_right = 76.0
+margin_bottom = 41.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
+text = "$1'000'000
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Launches" type="HBoxContainer" parent="GUI/Box/Cols/Stats/Rows"]
+margin_top = 45.0
+margin_right = 1550.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="GUI/Box/Cols/Stats/Rows/Launches"]
+margin_right = 147.0
+margin_bottom = 41.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
+text = "Rockets Lauched:
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter" type="Label" parent="GUI/Box/Cols/Stats/Rows/Launches"]
+margin_left = 151.0
+margin_right = 160.0
+margin_bottom = 41.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
+text = "0
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Locations" type="TabContainer" parent="."]
+margin_top = 131.0
+margin_right = 1600.0
+margin_bottom = 768.0
+size_flags_vertical = 3
 tabs_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -49,7 +133,7 @@ __meta__ = {
 
 [node name="Sky" type="ColorRect" parent="Locations/Earth/Scenery"]
 margin_right = 1592.0
-margin_bottom = 592.0
+margin_bottom = 416.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
@@ -59,9 +143,9 @@ __meta__ = {
 }
 
 [node name="Ground" type="ColorRect" parent="Locations/Earth/Scenery"]
-margin_top = 592.0
+margin_top = 416.0
 margin_right = 1592.0
-margin_bottom = 889.0
+margin_bottom = 625.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.0666667, 0.439216, 0.0666667, 1 )
@@ -79,21 +163,30 @@ __meta__ = {
 
 [node name="Buildings" type="HBoxContainer" parent="Locations/Earth/View"]
 margin_right = 1804.0
-margin_bottom = 877.0
+margin_bottom = 613.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LaunchPad" type="MarginContainer" parent="Locations/Earth/View/Buildings"]
 margin_right = 900.0
-margin_bottom = 877.0
+margin_bottom = 613.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_horizontal = 3
 
+[node name="Sprite" type="TextureRect" parent="Locations/Earth/View/Buildings/LaunchPad"]
+margin_left = 410.0
+margin_top = 206.0
+margin_right = 490.0
+margin_bottom = 406.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+
 [node name="Launch" type="Button" parent="Locations/Earth/View/Buildings/LaunchPad"]
 margin_left = 400.0
-margin_top = 827.0
+margin_top = 563.0
 margin_right = 500.0
-margin_bottom = 877.0
+margin_bottom = 613.0
 rect_min_size = Vector2( 100, 50 )
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -106,7 +199,7 @@ __meta__ = {
 [node name="RocketFactory" type="MarginContainer" parent="Locations/Earth/View/Buildings"]
 margin_left = 904.0
 margin_right = 1804.0
-margin_bottom = 877.0
+margin_bottom = 613.0
 rect_min_size = Vector2( 900, 0 )
 size_flags_horizontal = 3
 custom_constants/margin_right = 50
@@ -114,9 +207,9 @@ custom_constants/margin_bottom = 50
 
 [node name="Buy" type="Button" parent="Locations/Earth/View/Buildings/RocketFactory"]
 margin_left = 750.0
-margin_top = 777.0
+margin_top = 513.0
 margin_right = 850.0
-margin_bottom = 827.0
+margin_bottom = 563.0
 rect_min_size = Vector2( 100, 50 )
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -134,73 +227,25 @@ margin_bottom = -4.0
 
 [node name="Moon" parent="Locations/Moon" instance=ExtResource( 3 )]
 
-[node name="GUI" type="MarginContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+margin_top = 772.0
+margin_right = 1600.0
+margin_bottom = 900.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+margin_top = 4.0
+margin_right = 1600.0
+margin_bottom = 132.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -714.0
-custom_constants/margin_right = 50
-custom_constants/margin_top = 50
-custom_constants/margin_left = 50
-custom_constants/margin_bottom = 50
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cols" type="HBoxContainer" parent="GUI"]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 1550.0
-margin_bottom = 136.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Stats" type="MarginContainer" parent="GUI/Cols"]
-margin_right = 1500.0
-margin_bottom = 86.0
-size_flags_horizontal = 3
-
-[node name="Rows" type="VBoxContainer" parent="GUI/Cols/Stats"]
-margin_right = 1500.0
-margin_bottom = 86.0
-
-[node name="Money" type="Label" parent="GUI/Cols/Stats/Rows"]
-margin_right = 76.0
-margin_bottom = 41.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
-text = "$1'000'000
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Launches" type="HBoxContainer" parent="GUI/Cols/Stats/Rows"]
-margin_top = 45.0
-margin_right = 1500.0
-margin_bottom = 86.0
-
-[node name="Label" type="Label" parent="GUI/Cols/Stats/Rows/Launches"]
-margin_right = 147.0
-margin_bottom = 41.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
-text = "Rockets Lauched:
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Counter" type="Label" parent="GUI/Cols/Stats/Rows/Launches"]
-margin_left = 151.0
-margin_right = 160.0
-margin_bottom = 41.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
-text = "0
-"
+color = Color( 0.588235, 0.588235, 0.588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
