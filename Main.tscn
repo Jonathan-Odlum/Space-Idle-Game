@@ -54,16 +54,16 @@ margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Stats" type="MarginContainer" parent="GUI/Box/Cols"]
-margin_right = 1550.0
+[node name="Currencies" type="MarginContainer" parent="GUI/Box/Cols"]
+margin_right = 1386.0
 margin_bottom = 103.0
 size_flags_horizontal = 3
 
-[node name="Rows" type="VBoxContainer" parent="GUI/Box/Cols/Stats"]
-margin_right = 1550.0
+[node name="Rows" type="VBoxContainer" parent="GUI/Box/Cols/Currencies"]
+margin_right = 1386.0
 margin_bottom = 103.0
 
-[node name="Money" type="Label" parent="GUI/Box/Cols/Stats/Rows"]
+[node name="Money" type="Label" parent="GUI/Box/Cols/Currencies/Rows"]
 margin_right = 76.0
 margin_bottom = 41.0
 size_flags_horizontal = 0
@@ -75,12 +75,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Launches" type="HBoxContainer" parent="GUI/Box/Cols/Stats/Rows"]
+[node name="Science" type="HBoxContainer" parent="GUI/Box/Cols/Currencies/Rows"]
 margin_top = 45.0
-margin_right = 1550.0
+margin_right = 83.0
 margin_bottom = 86.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="GUI/Box/Cols/Stats/Rows/Launches"]
+[node name="Title" type="Label" parent="GUI/Box/Cols/Currencies/Rows/Science"]
+margin_right = 70.0
+margin_bottom = 41.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Science:
+"
+valign = 1
+
+[node name="Counter" type="Label" parent="GUI/Box/Cols/Currencies/Rows/Science"]
+margin_left = 74.0
+margin_right = 83.0
+margin_bottom = 41.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "0"
+
+[node name="Stats" type="MarginContainer" parent="GUI/Box/Cols"]
+margin_left = 1390.0
+margin_right = 1550.0
+margin_bottom = 103.0
+
+[node name="Rows" type="VBoxContainer" parent="GUI/Box/Cols/Stats"]
+margin_right = 160.0
+margin_bottom = 103.0
+
+[node name="Launches" type="HBoxContainer" parent="GUI/Box/Cols/Stats/Rows"]
+margin_right = 160.0
+margin_bottom = 41.0
+
+[node name="Title" type="Label" parent="GUI/Box/Cols/Stats/Rows/Launches"]
 margin_right = 147.0
 margin_bottom = 41.0
 size_flags_horizontal = 0
@@ -182,7 +214,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 5 )
 
-[node name="RocketFactory" type="MarginContainer" parent="Locations/Earth/View/Buildings"]
+[node name="Warehouse" type="MarginContainer" parent="Locations/Earth/View/Buildings"]
 margin_left = 904.0
 margin_right = 1804.0
 margin_bottom = 630.0
@@ -191,7 +223,7 @@ size_flags_horizontal = 3
 custom_constants/margin_right = 50
 custom_constants/margin_bottom = 50
 
-[node name="Buy" type="Button" parent="Locations/Earth/View/Buildings/RocketFactory"]
+[node name="Buy" type="Button" parent="Locations/Earth/View/Buildings/Warehouse"]
 margin_left = 750.0
 margin_top = 530.0
 margin_right = 850.0
@@ -202,7 +234,7 @@ size_flags_vertical = 8
 custom_fonts/font = SubResource( 1 )
 text = "Buy"
 
-[node name="TextureButton" type="TextureButton" parent="Locations/Earth/View/Buildings/RocketFactory"]
+[node name="TextureButton" type="TextureButton" parent="Locations/Earth/View/Buildings/Warehouse"]
 margin_left = 290.0
 margin_top = 215.0
 margin_right = 560.0
@@ -265,5 +297,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="Locations/Earth/View/Buildings/LaunchPad/TextureButton" to="." method="_on_Building_Selected" binds= [ "LaunchPad" ]]
-[connection signal="pressed" from="Locations/Earth/View/Buildings/RocketFactory/Buy" to="." method="_on_Buy_pressed"]
+[connection signal="pressed" from="Locations/Earth/View/Buildings/Warehouse/Buy" to="." method="_on_Buy_pressed"]
+[connection signal="pressed" from="Locations/Earth/View/Buildings/Warehouse/TextureButton" to="." method="_on_Building_Selected" binds= [ "Warehouse" ]]
 [connection signal="pressed" from="Control/ContextMenus/LaunchPad/Launch" to="." method="_on_Launch_pressed"]

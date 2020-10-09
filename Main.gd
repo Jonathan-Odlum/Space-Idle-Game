@@ -39,7 +39,7 @@ func _on_Rocket_in_orbit():
 
 func change_money(delta_dollar):
 	money += delta_dollar
-	$GUI/Box/Cols/Stats/Rows/Money.text = "$" + str(money)
+	$GUI/Box/Cols/Currencies/Rows/Money.text = "$" + str(money)
 
 
 func increment_launches():
@@ -52,4 +52,3 @@ func _on_Building_Selected(building_name):
 		get_tree().get_root().get_node("Main/Control/ContextMenus").current_tab = 0
 	if building_name == "Warehouse":
 		get_tree().get_root().get_node("Main/Control/ContextMenus").current_tab = 1
-
